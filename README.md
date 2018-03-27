@@ -37,38 +37,37 @@ You will have to create a custom controller for the database. But that should be
 `
 TimeUnit.MILLISECONDS.sleep(1000);
 				
-				 	if(photoStore.size() >= 100) {
-				    //Force the database to write to the default directory if nessesary!		
-						LinkedList<PhotoStore.Photo> photos = photoStore.subset(50);
-						if(photos != null) {
-							for(PhotoStore.Photo photo : photos) {
-								if(dbManager.isWrittenToDB(photo.getName())) {
-									photoStore.remove(photo.getName());
-								} else if(!dbManager.isCurrentlyWriting(photo.getName())){
-									dbManager.save(photo.getData(), photo.getName(), true);
-								}
-							}
-						}
+if(photoStore.size() >= 100) {
+	//Force the database to write to the default directory if nessesary!		
+	LinkedList<PhotoStore.Photo> photos = photoStore.subset(50);
+	if(photos != null) {
+		for(PhotoStore.Photo photo : photos) {
+			if(dbManager.isWrittenToDB(photo.getName())) {
+				photoStore.remove(photo.getName());
+			} else if(!dbManager.isCurrentlyWriting(photo.getName())){
+				dbManager.save(photo.getData(), photo.getName(), true);
+			}
+	}
+}
 						
-					} else {
+} else {
 						
-						LinkedList<PhotoStore.Photo> photos = photoStore.subset(16);
-						if(photos != null) {
-							for(PhotoStore.Photo photo : photos) {
-								if(dbManager.isWrittenToDB(photo.getName())) {
-									photoStore.remove(photo.getName());
-								} else if(!dbManager.isCurrentlyWriting(photo.getName())) {
-									dbManager.save(photo.getData(), photo.getName(), false);
-								}
-							}
-						}
-						
-					}	
+LinkedList<PhotoStore.Photo> photos = photoStore.subset(16);
+if(photos != null) {
+	for(PhotoStore.Photo photo : photos) {
+		if(dbManager.isWrittenToDB(photo.getName())) {
+			photoStore.remove(photo.getName());
+		} else if(!dbManager.isCurrentlyWriting(photo.getName())) {
+			dbManager.save(photo.getData(), photo.getName(), false);
+		}
+	}
+}						
+}	
 					
-          //If you want to limit how many files can be in the root directory of each database
-					for(JSMDatabase db : dbManager.getDatabases()) {
-						if(db.canReduceRoot() && db.getTotalRootFiles() >= 50) {
-							db.reduceRoot(20);
-						}
-					}
+//If you want to limit how many files can be in the root directory of each database
+for(JSMDatabase db : dbManager.getDatabases()) {
+	if(db.canReduceRoot() && db.getTotalRootFiles() >= 50) {
+		db.reduceRoot(20);
+	}
+}
 `
