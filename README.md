@@ -1,6 +1,8 @@
 # jsmdatabase
 A file database for when your on a budget
 
+Do you have an old computer laying around? Or a raspberry pi? Do you have a bunch of old 8gb flash drives? Well, then create a database! This database gathers and organizes whatever flash drive or usb storage device you have connected to the computer, and creates a database from it! Pretty cool right??
+
 This is a non-redundant, low resource, high throughput, file database.
 What does that mean?
 
@@ -17,22 +19,21 @@ What does that mean?
 ### file database ###
   * This database stores whatever files you want without redundancy. It's perfect for a timelapse setup: when sets of data
     are needed to be stored on an interval.
-    
-    
+
 Example...
 
 ```
 JSMDBManager dbManager = new JSMDBManager();
 dbManager.setMaxDatabases(2); //Total of 2 usb devices plugged into machine
 dbManager.setDatabaseWriteSpeed(50); //50 millisecond write speed
-dbManager.setMaxDatabaseWriters(4); //Total concurrent file writers
-dbManager.setInfoFileDirectory('/home/user/test/info/'); //Stores information about usb devices
-dbManager.setRootDBDirectory('/home/user/test/rootdb/'); //Stores the files!
-dbManager.setLinuxScriptsDirectory('/home/user/test/scripts/'); //Stores the helper scripts
+dbManager.setMaxDatabaseWriters(4); //Total concurrent file writers per database
+dbManager.setInfoFileDirectory("/home/user/test/info/"); //Stores information about usb devices
+dbManager.setRootDBDirectory("/home/user/test/rootdb/"); //Stores the files!
+dbManager.setLinuxScriptsDirectory("/home/user/test/scripts/"); //Stores the helper scripts
 dbManager.init(); //Generates the scripts, creates directories, and mounts usb drives
 dbManager.start(); //Runs the thread to unmount drives and store information about them
 ```
-You will have to create a custom controller on an interval that runs in a seperate thread for it. But that should be really easy...
+You will have to create a custom controller on an interval that runs in a seperate thread for it. Here is an example of storing photos to the database...
 
 ```
 TimeUnit.MILLISECONDS.sleep(1000);
