@@ -32,7 +32,7 @@ dbManager.setLinuxScriptsDirectory('/home/user/test/scripts/'); //Stores the hel
 dbManager.init(); //Generates the scripts, creates directories, and mounts usb drives
 dbManager.start(); //Runs the thread to unmount drives and store information about them
 ```
-You will have to create a custom controller for the database. But that should be really easy...
+You will have to create a custom controller for the database that runs in a seperate thread. But that should be really easy...
 
 ```
 TimeUnit.MILLISECONDS.sleep(1000);
