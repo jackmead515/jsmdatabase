@@ -21,7 +21,7 @@ What does that mean?
     
 Example...
 
-`
+```
 JSMDBManager dbManager = new JSMDBManager();
 dbManager.setMaxDatabases(2); //Total of 2 usb devices plugged into machine
 dbManager.setDatabaseWriteSpeed(50); //50 millisecond write speed
@@ -31,10 +31,10 @@ dbManager.setRootDBDirectory('/home/user/test/rootdb/'); //Stores the files!
 dbManager.setLinuxScriptsDirectory('/home/user/test/scripts/'); //Stores the helper scripts
 dbManager.init(); //Generates the scripts, creates directories, and mounts usb drives
 dbManager.start(); //Runs the thread to unmount drives and store information about them
-`
+```
 You will have to create a custom controller for the database. But that should be really easy...
 
-`
+```
 TimeUnit.MILLISECONDS.sleep(1000);
 				
 if(photoStore.size() >= 100) {
@@ -70,4 +70,4 @@ for(JSMDatabase db : dbManager.getDatabases()) {
 		db.reduceRoot(20);
 	}
 }
-`
+```
