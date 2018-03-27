@@ -35,7 +35,7 @@ dbManager.start(); //Runs the thread to unmount drives and store information abo
 You will have to create a custom controller for the database. But that should be really easy...
 
 `
-          TimeUnit.MILLISECONDS.sleep(1000);
+TimeUnit.MILLISECONDS.sleep(1000);
 				
 				 	if(photoStore.size() >= 100) {
 				    //Force the database to write to the default directory if nessesary!		
